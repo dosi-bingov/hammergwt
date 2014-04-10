@@ -1,7 +1,8 @@
 package org.hammergwt.client.event;
 
+
 /**
- * Created by dosib on 19/03/14.
+ * @author Dosi Bingov
  */
 public enum PointerType {
 	MOUSE("mouse"),

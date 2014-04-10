@@ -4,7 +4,6 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.ui.AbsolutePanel;
-import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -14,15 +13,19 @@ import org.hammergwt.client.handler.HammerDragHandler;
 import org.hammergwt.client.handler.HammerHandler;
 import org.hammergwt.client.handler.HammerPinchHandler;
 import org.hammergwt.client.handler.HammerTapHandler;
-import org.hammergwt.client.impl.GestureOption;
+import org.hammergwt.client.impl.HammerTime;
 import org.hammergwt.client.impl.HammerGWT;
-import org.hammergwt.client.impl.Hammerable;
+import org.hammergwt.client.impl.option.GestureOption;
+import org.hammergwt.client.impl.option.GestureOptions;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
- * Created by dosib on 19/03/14.
+ * Hammer GWT example.
+ *
+ * @author Dosi Bingov
  */
 public class HammerGWTExample implements EntryPoint {
 	final Label logLabel = new Label();
@@ -101,23 +104,20 @@ public class HammerGWTExample implements EntryPoint {
 			}
 		}, EventType.DOUBLETAP, EventType.PINCH);
 
-		// Options example
-		GestureOption doubletapDistance =  GestureOption.DOUBLETAP_DISTANCE;
-		doubletapDistance.setVal(2);
-		GestureOption drag  = GestureOption.DRAG;
-		drag.setVal(false);
-		GestureOption dragMinDistance = GestureOption.DRAG_MIN_DISTANCE;
-		dragMinDistance.setVal(500000);
 
-		GestureOption dragtoaxis = GestureOption.DRAG_LOCK_TO_AXIS;
-		dragtoaxis.setVal(true);
+		HammerTime hammerTime = HammerGWT.on(panel3, new HammerHandler() {
 
-		HammerGWT.on(panel3, new GestureOption[] {dragtoaxis}, new HammerHandler() {
 			@Override
 			public void onHammerEvent(NativeHammerEvent event) {
 				log(event);
 			}
 		}, EventType.DOUBLETAP, EventType.PINCH, EventType.DRAG);
+
+
+		// Set options example
+		hammerTime.setOption(GestureOptions.DRAG, false);
+
+		hammerTime.setOption(GestureOptions.HOLD_TIMEOUT, 2);
 
 	}
 

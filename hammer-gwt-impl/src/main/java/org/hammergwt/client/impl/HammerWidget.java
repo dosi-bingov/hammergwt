@@ -8,6 +8,8 @@ import org.hammergwt.client.handler.HammerTapHandler;
 
 
 /**
+ * Hammer GWT widget. If the widget is extended should be possible to add hammer handlers to it.
+ *
  * @author Dosi Bingov
  *
  * @version 1.0
@@ -17,7 +19,6 @@ public abstract class HammerWidget implements IsWidget {
 	private JavaScriptObject hammertime;
 
 	public HammerWidget() {
-
 	}
 
 	public void addPinchHandler(HammerPinchHandler handler) {

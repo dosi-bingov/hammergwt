@@ -11,7 +11,7 @@ import org.hammergwt.client.handler.HammerPinchHandler;
 import org.hammergwt.client.handler.HammerPinchInHandler;
 import org.hammergwt.client.handler.HammerPinchOutHandler;
 import org.hammergwt.client.handler.HammerTapHandler;
-
+import org.hammergwt.client.impl.option.GestureOption;
 
 /**
  * Hammer GWT implementation.
@@ -22,7 +22,7 @@ import org.hammergwt.client.handler.HammerTapHandler;
  */
 public final class HammerGWT {
 
-	private HammerGWT() {
+	protected HammerGWT() {
 	}
 
 
@@ -34,7 +34,7 @@ public final class HammerGWT {
 		String gestureOptionsStr = "";
 
 		for (GestureOption option: gestureOptions) {
-			gestureOptionsStr = gestureOptionsStr + option.toString().toLowerCase() + ": " + option.getVal() + ", ";
+			gestureOptionsStr = gestureOptionsStr + option + ", ";
 		}
 
 		gestureOptionsStr = gestureOptionsStr.substring(0, gestureOptionsStr.lastIndexOf(',')); //trim last comma
@@ -58,13 +58,11 @@ public final class HammerGWT {
 	 *
 	 * @param handler EventType handles all kinds of hammer events
 	 * @param eventTypes type that hammer should handle
+	 *
+	 * @return Hammertime object
 	 */
-	public static void on(IsWidget widget, HammerHandler handler, EventType... eventTypes) {
-		on(widget, null, null, handler, eventTypes);
-	}
-
-	public static void on(IsWidget widget, GestureOption[] gestureOptions, HammerHandler handler, EventType... eventTypes) {
-		on(widget, gestureOptions, null, handler, eventTypes);
+	public static HammerTime on(IsWidget widget, HammerHandler handler, EventType... eventTypes) {
+		return on(widget,null, handler, eventTypes);
 	}
 
 	/**
@@ -73,7 +71,7 @@ public final class HammerGWT {
 	 * @param handler EventType handles all kinds of hammer events
 	 * @param eventTypes type that hammer should handle
 	 */
-	public static void on(IsWidget widget, GestureOption[] gestureOptions, String eventNamespace, HammerHandler handler, EventType... eventTypes) {
+	public static final HammerTime on(IsWidget widget, String eventNamespace, HammerHandler handler, EventType... eventTypes) {
 		//JsArrayString arr = JavaScriptObject.createArray().cast();
 		String eventTypesStr = "";
 
@@ -89,25 +87,25 @@ public final class HammerGWT {
 
 		eventTypesStr = eventTypesStr.substring(0, eventTypesStr.lastIndexOf(" ")); //trim last space
 
-		JavaScriptObject obj = getInstance(widget.asWidget().getElement());
+		HammerTime obj = getInstance(widget.asWidget().getElement());
 
 		on(obj, eventTypesStr, handler);
 
-		setOptions(obj);
-
+		return obj;
 	}
 
 	private static native void off(com.google.gwt.dom.client.Element el, String event) /*-{
         return $wnd.Hammer(el).off(event);
     }-*/;
 
+	//TODO: make possible to set options as parameter
 	private static native void setOptions(JavaScriptObject hammertime) /*-{
         hammertime.options.prevent_default = true;
         hammertime.options.no_mouseevents = true;
     }-*/;
 
 
-	public static native JavaScriptObject getInstance(com.google.gwt.dom.client.Element el) /*-{
+	public static native HammerTime getInstance(com.google.gwt.dom.client.Element el) /*-{
         return $wnd.Hammer(el);
     }-*/;
 
@@ -144,6 +142,7 @@ public final class HammerGWT {
                 handler.@org.hammergwt.client.handler.HammerDragHandler::onDrag(Lorg/hammergwt/client/event/NativeHammerEvent;)(ev);
 
                 if (typeof console == 'object') {
+					//TODO: make logging more generic
 					console.log('Drag Event', ev);
                 }
             });

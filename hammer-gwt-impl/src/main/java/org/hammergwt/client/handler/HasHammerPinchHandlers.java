@@ -1,8 +1,8 @@
 package org.hammergwt.client.handler;
 
+
 /**
- * TODO:
- * Created by dosib on 20/03/14.
+ * @author Dosi Bingov
  */
 public interface HasHammerPinchHandlers extends HammerPinchHandler, HammerPinchInHandler, HammerPinchOutHandler {
 

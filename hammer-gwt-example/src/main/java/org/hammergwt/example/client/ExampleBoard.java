@@ -6,8 +6,9 @@ import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import org.hammergwt.client.impl.HammerWidget;
 
+
 /**
- * Created by dosib on 19/03/14.
+ * @author Dosi Bingov
  */
 public class ExampleBoard extends HammerWidget {
 	AbsolutePanel panel;

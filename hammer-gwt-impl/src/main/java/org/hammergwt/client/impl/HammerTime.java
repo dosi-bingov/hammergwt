@@ -4,7 +4,9 @@ import com.google.gwt.core.client.JavaScriptObject;
 import org.hammergwt.client.impl.option.GestureOption;
 
 /**
- * Created by dd on 4/10/14.
+ * Hammer js overlay javascript  object.
+ *
+ * @author Dosi Bingov
  */
 public final class HammerTime extends JavaScriptObject {
 
@@ -12,61 +14,33 @@ public final class HammerTime extends JavaScriptObject {
 	}
 
 	private static final native void setOption(HammerTime hammerTime, boolean value, String name) /*-{
-        //hammerTime.options.name = value;
-
         hammerTime.options[name] = value;
 
-        if (typeof console == 'object') {
-            //TODO: make logging more generic
-            console.log('Swipe option ', hammerTime.options[name]);
-
-            console.log('Hammer time object', hammerTime);
-        }
     }-*/;
 
 
 	private static final native void setOption(HammerTime hammerTime, double value, String name) /*-{
-        //hammerTime.options.name = value;
-
         hammerTime.options[name] = value;
-
-        if (typeof console == 'object') {
-            //TODO: make logging more generic
-            console.log('Swipe option ', hammerTime.options[name]);
-
-            console.log('Hammer time object', hammerTime);
-        }
     }-*/;
 
 	private static final native void setOption(HammerTime hammerTime, int value, String name) /*-{
-        //hammerTime.options.name = value;
-
         hammerTime.options[name] = value;
-
-        if (typeof console == 'object') {
-            //TODO: make logging more generic
-            console.log('Swipe option ', hammerTime.options[name]);
-
-            console.log('Hammer time object', hammerTime);
-        }
     }-*/;
 
 	private static final native void setOption(HammerTime hammerTime, String value, String name) /*-{
         hammerTime.options[name] = value;
 
-        if (typeof console == 'object') {
+         //if (typeof console == 'object') {
             //TODO: make logging more generic
-            console.log('Swipe option ', hammerTime.options[name]);
-
-            console.log('Hammer time object', hammerTime);
-        }
+         //   console.log('Swipe option ', hammerTime.options[name]);
+		//	console.log('Hammer time object', hammerTime);
+        //}
     }-*/;
 
 	public <T> void setOption(GestureOption<T> option, T value) {
 		if (value == null) {
 			throw new IllegalArgumentException("Null value passed.");
 		}
-
 
 		if (value instanceof Boolean) {
 			setOption(this, (Boolean) value, option.getName());
@@ -80,6 +54,5 @@ public final class HammerTime extends JavaScriptObject {
 		} else if (value instanceof String) {
 			setOption(this, String.valueOf(value), option.getName());
 		}
-
 	}
 }

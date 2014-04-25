@@ -62,7 +62,7 @@ public final class HammerGWT {
 	 * @return Hammertime object
 	 */
 	public static HammerTime on(IsWidget widget, HammerHandler handler, EventType... eventTypes) {
-		return on(widget,null, handler, eventTypes);
+		return on(widget, null, handler, eventTypes);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public final class HammerGWT {
 	 * @param handler EventType handles all kinds of hammer events
 	 * @param eventTypes type that hammer should handle
 	 */
-	public static final HammerTime on(IsWidget widget, String eventNamespace, HammerHandler handler, EventType... eventTypes) {
+	public static HammerTime on(IsWidget widget, String eventNamespace, HammerHandler handler, EventType... eventTypes) {
 		//JsArrayString arr = JavaScriptObject.createArray().cast();
 		String eventTypesStr = "";
 
@@ -141,10 +141,10 @@ public final class HammerGWT {
             function(ev) {
                 handler.@org.hammergwt.client.handler.HammerDragHandler::onDrag(Lorg/hammergwt/client/event/NativeHammerEvent;)(ev);
 
-                if (typeof console == 'object') {
+                //if (typeof console == 'object') {
 					//TODO: make logging more generic
 					console.log('Drag Event', ev);
-                }
+                //}
             });
     }-*/;
 

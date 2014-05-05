@@ -12,7 +12,7 @@
     <!-- remote logging -->
     <servlet>
         <servlet-name>remoteLogging</servlet-name>
-        <servlet-class>org.hammergwt.example.server.RemoteSLF4j</servlet-class>
+        <servlet-class>org.geomajas.hammergwt.example.server.RemoteSLF4j</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>remoteLogging</servlet-name>

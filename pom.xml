@@ -10,10 +10,10 @@
         <module>hammer-gwt-example</module>
     </modules>
 
-    <groupId>org.hammergwt</groupId>
-    <artifactId>hammergwt</artifactId>
+    <groupId>org.geomajas.hammergwt</groupId>
+    <artifactId>geomajas-project-hammer-gwt-all</artifactId>
     <name>hammer gwt</name>
-    <description>GWT wrapper for hammer.js version '1.0.9'</description>
+    <description>GWT wrapper for hammer.js</description>
 
     <developers>
         <developer>
@@ -29,7 +29,7 @@
     <dependencyManagement>
         <dependencies>
 
-        <!-- Artifacts within this project -->
+        <!-- dependencies within this project -->
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt-user</artifactId>
